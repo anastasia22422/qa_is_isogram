@@ -3,37 +3,41 @@
 describe('isIsogram', () => {
   const { isIsogram } = require('./isIsogram');
 
-  it(`should be declared`, () => {
+  it('should be declared as a function', () => {
     expect(isIsogram).toBeInstanceOf(Function);
   });
 
-  it('should return true if string is empty', () => {
-    const result = isIsogram('');
-
-    expect(result).toBe(true);
+  it('should return true for a word with all unique letters', () => {
+    expect(isIsogram('playgrounds')).toBe(true);
   });
 
-  it('should return correct type of value', () => {
-    const result = isIsogram('');
-
-    expect(typeof result).toBe('boolean');
+  it('should return false for a word with repeating letters', () => {
+    expect(isIsogram('look')).toBe(false);
   });
 
-  it('should return correct type of value', () => {
-    const result = isIsogram('');
+  it('should return false for a word with repeating letters in different cases',
+    () => {
+      expect(isIsogram('Adam')).toBe(false);
+    });
 
-    expect(typeof result).toBe('boolean');
+  it('should return true for an empty string', () => {
+    expect(isIsogram('')).toBe(true);
   });
 
-  it('should return true for correct value', () => {
-    const result = isIsogram('playgrounds');
+  it('should return false for a word with non-consecutive repeating letters',
+    () => {
+      expect(isIsogram('Oops')).toBe(false);
+    });
 
-    expect(result).toBe(true);
+  it('should return true for single-letter words', () => {
+    expect(isIsogram('A')).toBe(true);
   });
 
-  it('should return false for incorrect value', () => {
-    const result = isIsogram('oops');
+  it('should return true for two different letters', () => {
+    expect(isIsogram('Hi')).toBe(true);
+  });
 
-    expect(result).toBe(false);
+  it('should return false for same letter repeated in different cases', () => {
+    expect(isIsogram('Aa')).toBe(false);
   });
 });
